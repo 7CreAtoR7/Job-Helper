@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style type="text/css">
+
+
+form.create_vacancy_form{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 450px;
+    background-color: #ffcc00;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form-control1 {
+width: 98%;
+}
+
+.form-control2 {
+width: 98%;
+}
+
+.form-control3 {
+width: 98%;
+}
+
+.form-control4 {
+width: 98%;
+}
+
+.form-control5 {
+width: 98%;
+}
+
+.form-control6 {
+width: 98%;
+height: 250px;
+}
+
+
+.form-control7 {
+width: 98%;
+height: 100px;
+}
+
+
+.form-control8 {
+width: 98%;
+}
+
+
+.form-control9 {
+width: 98%;
+}
+
+
+.form-control10 {
+width: 98%;
+}
+
+.form-control11 {
+width: 98%;
+}
+
+.form-control12 {
+width: 98%;
+}
+
+
+.flash {
+    color: red;
+    font-size: 250%;
+ }
+
+  </style>
+</head>
+<body>
+
+
+    <header>
+        <nav>
+            <div style="height: 80px; padding: 20px; background-color: rgba(128, 128, 128, .3); margin-top: 20px; margin-bottom: 10px;">
+                <a style="margin: 0; float: left; color: black;" href="/employer">На Главную страницу</a>
+                {% if current_user.is_authenticated %}
+                    <a style="float: right; padding: 11px; color: black;" class="navbar-brand" href="/logout">{{ current_user.surname }} {{ current_user.name }}</a>
+                {% else %}
+                    <p style="float: right; padding: 3px;">
+                        <a class="btn btn-primary " href="/register/employer">Registrer</a>
+                        <a class="btn btn-success" href="/login/employer">Login</a>
+                    </p>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    <!-- Begin page content -->
+    <main role="main" class="container">
+
+        {% for msg in get_flashed_messages() %}
+        <div class="flash">{{msg}}</div>
+        {% endfor %}
+
+
+
+
+
+    <h1 align="center">Разместить вакансию</h1>
+    <form class="create_vacancy_form" action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(class="form-control1", type="text") }}<br>
+            {% for error in form.name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.city.label }}<br>
+            {{ form.city(class="form-control2", type="text") }}<br>
+            {% for error in form.city.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.speciality.label }}<br>
+            {{ form.speciality(class="form-control3", type="text") }}<br>
+            {% for error in form.speciality.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.office_address.label }}<br>
+            {{ form.office_address(class="form-control4", type="text") }}<br>
+            {% for error in form.office_address.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.salary.label }}<br>
+            {{ form.salary(class="form-control5", type="text") }}<br>
+            {% for error in form.salary.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(class="form-control6", type="text") }}<br>
+            {% for error in form.description.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.key_skills.label }}<br>
+            {{ form.key_skills(class="form-control7", type="text") }}<br>
+            {% for error in form.key_skills.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.work_exp.label }}<br>
+            {{ form.work_exp(class="form-control8", type="text") }}<br>
+            {% for error in form.work_exp.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.work_hrs.label }}<br>
+            {{ form.work_hrs(class="form-control9", type="text") }}<br>
+            {% for error in form.work_hrs.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.employment.label }}<br>
+            {{ form.employment(class="form-control10", type="text") }}<br>
+            {% for error in form.employment.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.phone.label }}<br>
+            {{ form.phone(class="form-control11", type="tel", pattern="8-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}") }}<br>
+            {% for error in form.phone.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(class="form-control12", type="email") }}<br>
+            {% for error in form.email.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        <div>{{ message }}</div>
+
+
+    </form>
+
+
+
+
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style type="text/css">
+
+  </style>
+</head>
+<body>
+<header>
+
+        <nav>
+            <a style="margin: 0; float: left; color: black;" href="/work-seeker">Главная страница</a>
+{#            <div style="height: 80px; padding: 20px; background-color: rgba(128, 128, 128, .3); margin-top: 20px; margin-bottom: 10px;">#}
+{##}
+{#            {% if current_user.is_authenticated %}#}
+{#            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>#}
+{#            {% else %}#}
+{#            <p>#}
+{#                <a class="btn btn-primary " href="/register/seeker">Зарегистрироваться</a>#}
+{#                <a class="btn btn-success" href="/login/seeker">Войти</a>#}
+{#            </p>#}
+{#            {% endif %}#}
+{#            </div>#}
+
+            <div style="height: 80px; padding: 20px; background-color: rgba(128, 128, 128, .3); margin-top: 20px; margin-bottom: 10px;">
+                {% if current_user.is_authenticated %}
+                    <a style="float: right; padding: 11px; color: black;" class="navbar-brand" href="/logout">{{ current_user.surname }} {{ current_user.name }}</a>
+                {% else %}
+                    <p style="float: right; padding: 3px;">
+                        <a class="btn btn-primary " href="/register/seeker">Зарегистрироваться</a>
+                        <a class="btn btn-success" href="/login/seeker">Войти</a>
+                    </p>
+                {% endif %}
+            </div>
+        </nav>
+
+    <div align="center">
+    <h2>Job Helper предоставляет возможность соискателям найти работу мечты!</h2>
+
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.vacancy.label }}<br>
+                {{ form.vacancy(class="form-control", type="text", placeholder="Поиск вакансий") }}<br>
+                {% for error in form.vacancy.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+
+
+            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+
+
+                    {% if current_user.is_authenticated %}
+                        <a class="btn btn-create_resume" href="create_resume">Создать резюме</a>
+                    {% else %}
+                <h1>Чтобы создать резюме, необходимо авторизоваться</h1>
+                    {% endif %}
+            </form>
+    </div>
+
+<h1 style="text-align: center; font-weight: bold;">Список вакансий</h1>
+    <div class="list-vacancies" align="center">
+{% for item in jobs %}
+<table class="table">
+    <tbody>
+        <h2 style="font-weight: bold;">Вакансия № {{ loop.index }}</h2>
+        <tr>
+            <th class="table-secondary">Название</th>
+            <th style="text-align: center;" class="table-secondary">Город</th>
+            <th style="text-align: center;" class="table-secondary">Необходимые навыки</th>
+            <th style="text-align: center;" class="table-secondary">Телефон</th>
+        </tr>
+        <tr>
+            <th style="width: 200px; padding:15px;" class="table-primary">{{ item.vacancy_name }}</th>
+            <th style="width: 200px; text-align: center; padding:15px" class="table-primary">{{ item.city }}</th>
+            <th style="width: 200px; text-align: center; padding:15px" class="table-primary">{{ item.skills }}</th>
+            <th style="width: 200px; text-align: center; padding:15px" class="table-primary">{{ item.phone }}</th>
+        </tr>
+    </tbody>
+</table>
+{% endfor %}
+</div>
+</header>
+</body>
+</html>

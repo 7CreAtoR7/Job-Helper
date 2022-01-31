@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style type="text/css">
+
+
+form.create_resume_form{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 450px;
+    background-color: #ffcc00;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form-control1 {
+width: 98%;
+}
+
+.form-control2 {
+width: 98%;
+}
+
+
+.form-control7 {
+width: 98%;
+}
+
+
+.form-control8 {
+width: 98%;
+}
+
+
+.form-control9 {
+width: 98%;
+}
+
+
+.form-control11 {
+width: 98%;
+}
+
+
+.form-control13 {
+width: 98%;
+}
+
+
+.form-control14 {
+width: 98%;
+}
+
+
+.form-control15 {
+width: 98%;
+}
+
+
+.form-control16 {
+width: 98%;
+}
+
+
+.form-control17 {
+width: 98%;
+}
+
+
+.form-control18 {
+width: 98%;
+}
+
+
+.form-control19 {
+width: 98%;
+}
+
+
+.form-control20 {
+width: 98%;
+}
+
+
+.form-control21 {
+width: 98%;
+}
+
+
+.form-control22 {
+width: 98%;
+}
+
+
+.form-control25 {
+width: 98%;
+height: 250px;
+}
+
+
+.form-control26 {
+width: 98%;
+height: 250px;
+}
+
+.form-control30 {
+width: 98%;
+}
+
+.flash {
+    color: red;
+    font-size: 250%;
+ }
+
+  </style>
+</head>
+<body>
+
+
+    <header>
+        <nav>
+            <div style="height: 80px; padding: 20px; background-color: rgba(128, 128, 128, .3); margin-top: 20px; margin-bottom: 10px;">
+                <a style="margin: 0; float: left; color: black;" href="/work-seeker">На Главную страницу</a>
+                {% if current_user.is_authenticated %}
+                    <a style="float: right; padding: 11px; color: black;" class="navbar-brand" href="/logout">{{ current_user.surname }} {{ current_user.name }}</a>
+                {% else %}
+                    <p style="float: right; padding: 3px;">
+                        <a class="btn btn-primary " href="/register/seeker">Registrer</a>
+                        <a class="btn btn-success" href="/login/seeker">Login</a>
+                    </p>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    <!-- Begin page content -->
+    <main role="main" class="container">
+
+        {% for msg in get_flashed_messages() %}
+        <div class="flash">{{msg}}</div>
+        {% endfor %}
+
+
+
+
+
+    <h1 align="center">Разместить резюме</h1>
+    <form class="create_resume_form" action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(class="form-control1", type="text") }}<br>
+            {% for error in form.name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.surname.label }}<br>
+            {{ form.surname(class="form-control2", type="text") }}<br>
+            {% for error in form.surname.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.birthday.label }}<br>
+            {{ form.birthday(class="form-control3", type="date") }}<br>
+            {% for error in form.birthday.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.sex.label }}<br>
+            {{ form.sex(class="form-control4", type="text") }}<br>
+            {% for error in form.sex.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.phone.label }}<br>
+            {{ form.phone(class="form-control5", type="tel", pattern="8-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}") }}<br>
+            {% for error in form.phone.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(class="form-control30", type="email") }}<br>
+            {% for error in form.email.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.ready_to_move.label }}<br>
+            {{ form.ready_to_move(class="form-control6", type="checkbox") }}<br>
+            {% for error in form.ready_to_move.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.level_edu.label }}<br>
+
+            {{ form.level_edu(class="form-control7", id="select_edu") }}<br>
+            {% for error in form.level_edu.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.faculty.label }}<br>
+            {{ form.faculty(class="form-control8", type="text") }}<br>
+            {% for error in form.faculty.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.specialty.label }}<br>
+            {{ form.specialty(class="form-control9", type="text") }}<br>
+            {% for error in form.specialty.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.finish_year.label }}<br>
+            {{ form.finish_year(class="form-control10", type="date") }}<br>
+            {% for error in form.finish_year.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.his_language.label }}<br>
+            {{ form.his_language(class="form-control11", type="text") }}<br>
+            {% for error in form.his_language.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.knows_english.label }}<br>
+            {{ form.knows_english(class="form-control12", type="checkbox") }}<br>
+            {% for error in form.knows_english.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.work_exp.label }}<br>
+            {{ form.work_exp(class="form-control13", type="text") }}<br>
+            {% for error in form.work_exp.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.desired_position.label }}<br>
+            {{ form.desired_position(class="form-control14", type="text") }}<br>
+            {% for error in form.desired_position.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.salary.label }}<br>
+            {{ form.salary(class="form-control15", type="text") }}<br>
+            {% for error in form.salary.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.employment.label }}<br>
+            {{ form.employment(class="form-control16", type="text") }}<br>
+            {% for error in form.employment.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.work_hours.label }}<br>
+            {{ form.work_hours(class="form-control17", type="text") }}<br>
+            {% for error in form.work_hours.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+	</br>
+	<h2>Опыт работы</h2>
+
+        <p>
+            {{ form.organisation.label }}<br>
+            {{ form.organisation(class="form-control18", type="text") }}<br>
+            {% for error in form.organisation.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.region.label }}<br>
+            {{ form.region(class="form-control19", type="text") }}<br>
+            {% for error in form.region.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.website_of_ur_organisation.label }}<br>
+            {{ form.website_of_ur_organisation(class="form-control20", type="text") }}<br>
+            {% for error in form.website_of_ur_organisation.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.field_of_activity_the_company.label }}<br>
+            {{ form.field_of_activity_the_company(class="form-control21", type="text") }}<br>
+            {% for error in form.field_of_activity_the_company.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.post.label }}<br>
+            {{ form.post(class="form-control22", type="text") }}<br>
+            {% for error in form.post.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.start_work_year.label }}<br>
+            {{ form.start_work_year(class="form-control23", type="date") }}<br>
+            {% for error in form.start_work_year.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.finish_work_year.label }}<br>
+            {{ form.finish_work_year(class="form-control24", type="date") }}<br>
+            {% for error in form.finish_work_year.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.achievements.label }}<br>
+            {{ form.achievements(class="form-control25", type="text") }}<br>
+            {% for error in form.achievements.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+
+        <p>
+            {{ form.skills.label }}<br>
+            {{ form.skills(class="form-control26", type="text") }}<br>
+            {% for error in form.skills.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        <div>{{ message }}</div>
+
+
+    </form>
+
+
+
+
+
+    </main>
+</body>
+</html>

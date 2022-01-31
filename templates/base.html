@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style type="text/css">
+       BODY {
+          background: url( {{ picture }} ) no-repeat; /* Параметры фона */
+       }
+   .choose-worker { 
+        width: 700px;
+        height: 300px;
+        background: #fff;
+        border-radius: 21px;
+
+        position: absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin:auto;
+   }
+
+    .btn-btn-primary {
+        background-color: rgba(255, 0, 0, .3);
+        position: relative;
+        top:35px;
+        bottom: 30px;
+        left: 30px;
+        right: 90px;
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        margin: 100px;
+        padding: 15px;
+    }
+
+    .btn-btn-success{
+        background-color: rgba(255, 0, 0, .3);
+        position: relative;
+        bottom: -17px;
+        left: 240px;
+        right: 90px;
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        margin: 100px;
+        padding: 15px;
+    }
+
+
+  </style>
+</head>
+<body>
+<header>
+    <div class="choose-worker">
+        <h1 align="center">Добро пожаловать на Job Helper!</h1>
+	<h2 align="center">Я</h2>
+
+
+        <nav>
+            <div style="height: 80px; padding: 20px; background-color: rgba(128, 128, 128, .3); margin-top: 20px; margin-bottom: 10px; border-radius: 21px; margin-left: 40px; margin-right: 40px;">
+                    
+		    <a class="btn-btn-primary" href="/employer">Работодатель</a>
+                    <a class="btn-btn-success" href="/work-seeker">Соискатель</a>
+            </div>
+        </nav>
+
+
+    </div>
+</header>
+<!-- Begin page content -->
+<main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>
