@@ -55,14 +55,6 @@ def employer_page():
                 important_resumes = db_sess.query(Resumes).filter(Resumes.desired_position.like(f"%{key_words[0]}%"))
                 return render_template('employer.html', form=form, jobs=important_resumes)
 
-            if len(key_words) == 2:
-                important_resumes = db_sess.query(Resumes).filter(Resumes.desired_position.like(f"%{key_words[1]}%"))
-                return render_template('employer.html', form=form, jobs=important_resumes)
-
-            if len(key_words) == 3:
-                important_resumes = db_sess.query(Resumes).filter(Resumes.desired_position.like(f"%{key_words[2]}%"))
-                return render_template('employer.html', form=form, jobs=important_resumes)
-
     return render_template('employer.html', form=form, jobs=resumes)
 
 
